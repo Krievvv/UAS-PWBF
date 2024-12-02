@@ -1,4 +1,5 @@
 @extends('layout.main')
+@section('breadcrumbs', 'Dashboard')
 @section('content')
     <!--  Row 1 -->
     <div class="row">
@@ -74,7 +75,7 @@
         <div class="col-lg-8 d-flex align-items-stretch">
             <div class="card w-100">
                 <div class="card-body p-4">
-                    <h5 class="card-title fw-semibold mb-4">Revenue by Product</h5>
+                    <h5 class="card-title fw-semibold mb-4">Latest Komunitas</h5>
                     <div class="table-responsive" data-simplebar>
                         <table class="table text-nowrap align-middle table-custom mb-0">
                             <thead>
@@ -87,91 +88,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="ps-0">
-                                        <div class="d-flex align-items-center gap-6">
-                                            <img src="admin/assets/images/products/dash-prd-1.jpg" alt="prd1"
-                                                width="48" class="rounded" />
-                                            <div>
-                                                <h6 class="mb-0">Minecraf App</h6>
-                                                <span>Jason Roy</span>
+                                @forelse ($komunitas as $item)
+                                    <tr>
+                                        <td class="ps-0">
+                                            <div class="d-flex align-items-center gap-6">
+                                                <img src="https://placehold.co/400" alt="prd1" width="48"
+                                                    class="rounded" />
+                                                <div>
+                                                    <h6 class="mb-0">{{ $item->nama_komunitas }}</h6>
+                                                    <span>{{ $item->created_at->diffForHumans() }}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>73.2%</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success-subtle text-success">Low</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark">$3.5k</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="ps-0">
-                                        <div class="d-flex align-items-center gap-6">
-                                            <img src="admin/assets/images/products/dash-prd-2.jpg" alt="prd1"
-                                                width="48" class="rounded" />
-                                            <div>
-                                                <h6 class="mb-0">Web App Project</h6>
-                                                <span>Mathew Flintoff</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>73.2%</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning-subtle text-warning">Medium</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark">$3.5k</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="ps-0">
-                                        <div class="d-flex align-items-center gap-6">
-                                            <img src="admin/assets/images/products/dash-prd-3.jpg" alt="prd1"
-                                                width="48" class="rounded" />
-                                            <div>
-                                                <h6 class="mb-0">Modernize Dashboard</h6>
-                                                <span>Anil Kumar</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>73.2%</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-secondary-subtle text-secondary">Very
-                                            High</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark">$3.5k</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="ps-0">
-                                        <div class="d-flex align-items-center gap-6">
-                                            <img src="admin/assets/images/products/dash-prd-4.jpg" alt="prd1"
-                                                width="48" class="rounded" />
-                                            <div>
-                                                <h6 class="mb-0">Dashboard Co</h6>
-                                                <span>George Cruize</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span>73.2%</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-danger-subtle text-danger">High</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark">$3.5k</span>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <span>73.2%</span>
+                                        </td>
+                                        <td>
+                                            @if ($item->status == 1)
+                                                <span class="badge rounded-pill bg-success">Live</span>
+                                            @else
+                                                <span class="badge rounded-pill bg-danger">Disabled</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-sm btn-primary">Detail</a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">No data yet</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -185,174 +132,28 @@
                         <h5 class="card-title fw-semibold">Daily activities</h5>
                     </div>
                     <ul class="timeline-widget mb-0 position-relative mb-n5">
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time mt-n1 text-muted flex-shrink-0 text-end">09:46
-                            </div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge bg-primary flex-shrink-0 mt-2"></span>
-                                <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John
-                                Doe of $385.90</div>
-                        </li>
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time mt-n6 text-muted flex-shrink-0 text-end">09:46
-                            </div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge bg-warning flex-shrink-0"></span>
-                                <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n6 fw-semibold">New sale
-                                recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal ">#ML-3467</a>
-                            </div>
-                        </li>
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time mt-n6 text-muted flex-shrink-0 text-end">09:46
-                            </div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge bg-warning flex-shrink-0"></span>
-                                <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n6">Payment was made of $64.95
-                                to Michael</div>
-                        </li>
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time mt-n6 text-muted flex-shrink-0 text-end">09:46
-                            </div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge bg-secondary flex-shrink-0"></span>
-                                <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n6 fw-semibold">New sale
-                                recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal ">#ML-3467</a>
-                            </div>
-                        </li>
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time mt-n6 text-muted flex-shrink-0 text-end">09:46
-                            </div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge bg-danger flex-shrink-0"></span>
-                                <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n6 fw-semibold">Project meeting
-                            </div>
-                        </li>
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time mt-n6 text-muted flex-shrink-0 text-end">09:46
-                            </div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge bg-primary flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n6">Payment received from John
-                                Doe of $385.90</div>
-                        </li>
+                        @forelse ($comments as $item)
+                            <li class="timeline-item d-flex position-relative overflow-hidden">
+                                <div class="timeline-time mt-n6 text-muted flex-shrink-0 text-end">
+                                    {{ $item->created_at->diffForHumans() }}
+                                </div>
+                                <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                                    <span class="timeline-badge bg-success flex-shrink-0"></span>
+                                    <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                                </div>
+                                <div class="timeline-desc fs-3 text-dark mt-n6 fw-semibold">{{ $item->user->name }} <a
+                                        href="{{ route('komunitas.detail', $item->komunitas->id) }}"
+                                        class="text-success d-block fw-normal ">{{ Str::limit($item->komunitas->nama_komunitas, 35) }}</a>
+                                </div>
+                            </li>
+
+                        @empty
+                            <h3>No data yet</h3>
+                        @endforelse
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card overflow-hidden hover-img">
-                <div class="position-relative">
-                    <a href="javascript:void(0)">
-                        <img src="admin/assets/images/blog/blog-img1.jpg" class="card-img-top" alt="matdash-img">
-                    </a>
-                    <span
-                        class="badge text-bg-light text-dark fs-2 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">2
-                        min Read</span>
-                    <img src="admin/assets/images/profile/user-3.jpg" alt="matdash-img"
-                        class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40"
-                        height="40" data-bs-toggle="tooltip" data-bs-placement="top"
-                        data-bs-title="Georgeanna Ramero">
-                </div>
-                <div class="card-body p-4">
-                    <span class="badge text-bg-light fs-2 py-1 px-2 lh-sm  mt-3">Social</span>
-                    <a class="d-block my-4 fs-5 text-dark fw-semibold link-primary" href="">As
-                        yen tumbles, gadget-loving
-                        Japan goes
-                        for secondhand iPhones</a>
-                    <div class="d-flex align-items-center gap-4">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="ti ti-eye text-dark fs-5"></i>9,125
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="ti ti-message-2 text-dark fs-5"></i>3
-                        </div>
-                        <div class="d-flex align-items-center fs-2 ms-auto">
-                            <i class="ti ti-point text-dark"></i>Mon, Dec 19
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card overflow-hidden hover-img">
-                <div class="position-relative">
-                    <a href="javascript:void(0)">
-                        <img src="admin/assets/images/blog/blog-img2.jpg" class="card-img-top" alt="matdash-img">
-                    </a>
-                    <span
-                        class="badge text-bg-light text-dark fs-2 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">2
-                        min Read</span>
-                    <img src="admin/assets/images/profile/user-2.jpg" alt="matdash-img"
-                        class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40"
-                        height="40" data-bs-toggle="tooltip" data-bs-placement="top"
-                        data-bs-title="Georgeanna Ramero">
-                </div>
-                <div class="card-body p-4">
-                    <span class="badge text-bg-light fs-2 py-1 px-2 lh-sm  mt-3">Gadget</span>
-                    <a class="d-block my-4 fs-5 text-dark fw-semibold link-primary" href="">Intel loses bid to
-                        revive
-                        antitrust case
-                        against patent foe Fortress</a>
-                    <div class="d-flex align-items-center gap-4">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="ti ti-eye text-dark fs-5"></i>4,150
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="ti ti-message-2 text-dark fs-5"></i>38
-                        </div>
-                        <div class="d-flex align-items-center fs-2 ms-auto">
-                            <i class="ti ti-point text-dark"></i>Sun, Dec 18
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card overflow-hidden hover-img">
-                <div class="position-relative">
-                    <a href="javascript:void(0)">
-                        <img src="admin/assets/images/blog/blog-img3.jpg" class="card-img-top" alt="matdash-img">
-                    </a>
-                    <span
-                        class="badge text-bg-light text-dark fs-2 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">2
-                        min Read</span>
-                    <img src="admin/assets/images/profile/user-3.jpg" alt="matdash-img"
-                        class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40"
-                        height="40" data-bs-toggle="tooltip" data-bs-placement="top"
-                        data-bs-title="Georgeanna Ramero">
-                </div>
-                <div class="card-body p-4">
-                    <span class="badge text-bg-light fs-2 py-1 px-2 lh-sm  mt-3">Health</span>
-                    <a class="d-block my-4 fs-5 text-dark fw-semibold link-primary" href="">COVID outbreak deepens
-                        as more
-                        lockdowns
-                        loom in China</a>
-                    <div class="d-flex align-items-center gap-4">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="ti ti-eye text-dark fs-5"></i>9,480
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="ti ti-message-2 text-dark fs-5"></i>12
-                        </div>
-                        <div class="d-flex align-items-center fs-2 ms-auto">
-                            <i class="ti ti-point text-dark"></i>Sat, Dec 17
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection
