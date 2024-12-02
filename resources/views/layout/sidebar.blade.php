@@ -2,8 +2,8 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
-                <img src="admin/assets/images/logos/logo.svg" alt="" />
+            <a href="./index.html" class="text-nowrap logo-img text-xl">
+                Farm
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
@@ -17,8 +17,8 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./index.html" aria-expanded="false">
-                        <iconify-icon icon="solar:widget-add-line-duotone"></iconify-icon>
+                    <a class="sidebar-link" href="{{ route('admin.dashboard') }}" aria-expanded="false">
+                        <i class="fa-solid fa-boxes-stacked"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
@@ -30,65 +30,37 @@
                     <span class="hide-menu">Komunitas</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
-                        <iconify-icon icon="solar:layers-minimalistic-bold-duotone"></iconify-icon>
+                    <a class="sidebar-link" href="{{ route('admin.komunitas') }}" aria-expanded="false">
+                        <i class="fa-solid fa-users"></i>
                         <span class="hide-menu">Komunitas</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-                        <iconify-icon icon="solar:danger-circle-line-duotone"></iconify-icon>
+                    <a class="sidebar-link" href="#" aria-expanded="false">
+                        <i class="fa-solid fa-comments"></i>
                         <span class="hide-menu">Komentar</span>
                     </a>
                 </li>
-               
+
                 <li class="nav-small-cap">
                     <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
                     <span class="hide-menu">Pelayanan</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                    <a class="sidebar-link" href="#" aria-expanded="false">
                         <iconify-icon icon="solar:login-3-line-duotone"></iconify-icon>
-                        <span class="hide-menu">Login</span>
+                        <span class="hide-menu">Panduan</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('rekomendasi.index') }}" aria-expanded="false">
                         <iconify-icon icon="solar:user-plus-rounded-line-duotone"></iconify-icon>
-                        <span class="hide-menu">Register</span>
+                        <span class="hide-menu">Rekomendasi</span>
                     </a>
                 </li>
-                <li>
-                    <span class="sidebar-divider lg"></span>
-                </li>
-                <li class="nav-small-cap">
-                    <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
-                    <span class="hide-menu">EXTRA</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                        <iconify-icon icon="solar:sticker-smile-circle-2-line-duotone"></iconify-icon>
-                        <span class="hide-menu">Icons</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                        <iconify-icon icon="solar:planet-3-line-duotone"></iconify-icon>
-                        <span class="hide-menu">Sample Page</span>
-                    </a>
-                </li>
+
             </ul>
-            <div
-                class="unlimited-access d-flex align-items-center hide-menu bg-primary-subtle position-relative mb-7 mt-4 p-3 rounded">
-                <div class="me-2 flex-shrink-0">
-                    <h6 class="fw-semibold fs-4 mb-6 text-dark w-75">Upgrade to pro</h6>
-                    <a href="https://adminmart.com/product/matdash-bootstrap-5-admin-dashboard-template/"
-                        target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
-                </div>
-                <div class="unlimited-access-img">
-                    <img src="admin/assets/images/backgrounds/rupee.png" alt="" class="img-fluid">
-                </div>
-            </div>
+
         </nav>
         <!-- End Sidebar navigation -->
     </div>
