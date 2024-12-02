@@ -68,7 +68,7 @@
                 <a href="/" class="nav-item nav-link">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
                 <a href="{{ route('komunitas.all') }}" class="nav-item nav-link">Komunitas</a>
-                <a href="product.html" class="nav-item nav-link">Product</a>
+                <a href="{{ route('rekomendasi.user') }}" class="nav-item nav-link">Rekomendasi Pelayanan</a>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
         </div>
