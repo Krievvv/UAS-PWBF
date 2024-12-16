@@ -43,6 +43,9 @@
             </div>
             <div class="col">
                 <div class="d-flex align-items-center justify-content-end">
+                    @if (Auth::check() && Auth::user()->role_id == 1)
+                        <a class="btn btn-primary me-2" href="{{ route('admin.dashboard') }}">Dashboard Admin</a>
+                    @endif
                     @if (!Auth::check())
                         <a class="btn btn-primary me-2" href="/login">Login</a>
                     @else
@@ -67,9 +70,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
                 <a href="/" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="{{ route('komunitas.all') }}" class="nav-item nav-link">Komunitas</a>
-                <a href="{{ route('rekomendasi.user') }}" class="nav-item nav-link">Rekomendasi Pelayanan</a>
+                <a href="{{ route('komunitas.all') }}" class="nav-item nav-link {{ (request()->is('komunitas/*')) ? 'active' : '' }}">Komunitas</a>
+                <a href="{{ route('rekomendasi.user') }}" class="nav-item nav-link {{ (request()->is('rekomendasi/*')) ? 'active' : '' }}">Rekomendasi Pelayanan</a>
+                <a href="{{ route('panduan.user') }}" class="nav-item nav-link {{ (request()->is('panduan/*')) ? 'active' : '' }}">Panduan</a>
             </div>
         </div>
     </nav>
@@ -91,42 +94,15 @@
 
     <!-- Blog Start -->
     <div class="container py-5">
+        <a href="{{ route('rekomendasi.user') }}" class="btn btn-primary my-3">Back</a>
         <div class="row">
             <!-- Blog list Start -->
             <div class="col-lg-12">
                 <div class="row">
-                    @forelse ($rekomendasi as $item)
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href="{{ route('rekomendasi.show', $item->id) }}">
-                                        <h4>{{ $item->nama_rekomendasi }}</h4>
-                                        <span class=" fw-bold">{{ $item->created_at->format('D H:i, d M Y') }}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <h1>Nothing to show : (</h1>
-                    @endforelse
-                    <div class="col-12 mt-5">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination pagination-lg justify-content-center m-0">
-                                <li class="page-item disabled">
-                                    <a class="page-link rounded-0" href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="bi bi-arrow-left"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link rounded-0" href="#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="bi bi-arrow-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                    <div class="col-12">
+                        <h3>{{ $data->nama_rekomendasi }}</h3>
+                        <a href="{{ $data->url_rekomendasi }}" target="_blank" >Kunjungi rekomendasi</a>
+                        <p>{!! $data->deskripsi_rekomendasi !!}</p>
                     </div>
                 </div>
             </div>
@@ -143,63 +119,20 @@
             <div class="row gx-5">
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
-                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <h4 class="text-white mb-4">Get In Touch</h4>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-geo-alt text-white me-2"></i>
-                                <p class="text-white mb-0">123 Street, New York, USA</p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-envelope-open text-white me-2"></i>
-                                <p class="text-white mb-0">info@example.com</p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-telephone text-white me-2"></i>
-                                <p class="text-white mb-0">+012 345 67890</p>
-                            </div>
-                            <div class="d-flex mt-4">
-                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-secondary btn-square rounded-circle" href="#"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+
+                        <div class="col-lg col-md-12 pt-0 pt-lg-5 mb-5">
                             <h4 class="text-white mb-4">Quick Links</h4>
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-white mb-2" href="#"><i
                                         class="bi bi-arrow-right text-white me-2"></i>Home</a>
-                                <a class="text-white mb-2" href="#"><i
+                                <a class="text-white mb-2" href="/"><i
                                         class="bi bi-arrow-right text-white me-2"></i>About Us</a>
                                 <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
+                                        class="bi bi-arrow-right text-white me-2"></i>Komunitas</a>
+                                <a class="text-white mb-2" href="{{ route('komunitas.all') }}"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Rekomendasi Pelayanan</a>
                                 <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
-                                <a class="text-white" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <h4 class="text-white mb-4">Popular Links</h4>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Home</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>About Us</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
-                                <a class="text-white" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
+                                        class="bi bi-arrow-right text-white me-2"></i>Panduan</a>
                             </div>
                         </div>
                     </div>
@@ -223,7 +156,7 @@
     </div>
     <div class="container-fluid bg-dark text-white py-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">Your Site Name</a>. All Rights
+            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">FarmFresh</a>. All Rights
                 Reserved. Designed by <a class="text-secondary fw-bold" href="https://htmlcodex.com">HTML Codex</a>
             </p>
         </div>
