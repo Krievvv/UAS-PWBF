@@ -38,4 +38,18 @@ class RekomendasiController extends Controller
         $data = RekomendasiPelayanan::find($id);
         return view('admin.rekomendasi.detail', compact('data'));
     }
+
+    public function show($id)
+    {
+        $data = RekomendasiPelayanan::findOrFail($id);
+        return view('user.rekomendasi.detail', compact('data'));
+    }
+
+    public function delete($id)
+    {
+        $data = RekomendasiPelayanan::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Rekomendasi Berhasil Dihapus');
+    }
 }
