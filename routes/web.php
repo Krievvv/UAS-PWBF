@@ -43,12 +43,12 @@ Route::prefix('admin')->middleware(AuthMiddleware::class)->group(function () {
     
     
     // Panduan
-    Route::get('/panduan/all', [PanduanController::class, 'index'])->name('panduan.index');
-    Route::post('/panduan/store', [PanduanController::class, 'store'])->name('panduan.store');
-    Route::get('/panduan/detail/{id}', [PanduanController::class, 'detail'])->name('panduan.detail');
-    Route::get('/panduan/show/{id}', [PanduanController::class, 'show'])->name('panduan.show');
-    Route::get('/panduan/update/{id}', [PanduanController::class, 'update'])->name('panduan.update');
-    Route::get('/panduan/delete/{id}', [PanduanController::class, 'delete'])->name('panduan.delete');
+    // Route::get('/panduan/all', [PanduanController::class, 'index'])->name('panduan.index');
+    // Route::post('/panduan/store', [PanduanController::class, 'store'])->name('panduan.store');
+    // Route::get('/panduan/detail/{id}', [PanduanController::class, 'detail'])->name('panduan.detail');
+    // Route::get('/panduan/show/{id}', [PanduanController::class, 'show'])->name('panduan.show');
+    // Route::get('/panduan/update/{id}', [PanduanController::class, 'update'])->name('panduan.update');
+    // Route::get('/panduan/delete/{id}', [PanduanController::class, 'delete'])->name('panduan.delete');
     
     // Admin Rekomendasi
     Route::get('/rekomendasi/all', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
