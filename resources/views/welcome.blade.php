@@ -34,6 +34,16 @@
     <!-- Topbar Start -->
     <div class="container-fluid px-5 d-none d-lg-block">
         <div class="row gx-5 py-3 align-items-center">
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    <p>{{ session('error') }}</p>
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
             <div class="col">
                 <div class="d-flex align-items-center justify-content-start">
                     <a href="/" class="navbar-brand ms-lg-5">
@@ -43,10 +53,14 @@
             </div>
             <div class="col">
                 <div class="d-flex align-items-center justify-content-end">
-                    @if (Auth::user())
-                        <a class="btn btn-primary me-2">{{ Auth::user()->name ?? 'username' }}</a>
-                    @else
+                    @if (Auth::check() && Auth::user()->role_id == 1)
+                        <a class="btn btn-primary me-2" href="{{ route('admin.dashboard') }}">Dashboard Admin</a>
+                    @endif
+                    @if (!Auth::check())
                         <a class="btn btn-primary me-2" href="/login">Login</a>
+                    @else
+                        <a class="btn btn-primary me-2"
+                            href="{{ route('profile.index', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
                     @endif
                 </div>
             </div>
@@ -66,10 +80,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
                 <a href="/" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
                 <a href="{{ route('komunitas.all') }}" class="nav-item nav-link">Komunitas</a>
                 <a href="{{ route('rekomendasi.user') }}" class="nav-item nav-link">Rekomendasi Pelayanan</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('panduan.user') }}" class="nav-item nav-link">Panduan</a>
             </div>
         </div>
     </nav>
@@ -614,63 +627,20 @@
             <div class="row gx-5">
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
-                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <h4 class="text-white mb-4">Get In Touch</h4>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-geo-alt text-white me-2"></i>
-                                <p class="text-white mb-0">123 Street, New York, USA</p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-envelope-open text-white me-2"></i>
-                                <p class="text-white mb-0">info@example.com</p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-telephone text-white me-2"></i>
-                                <p class="text-white mb-0">+012 345 67890</p>
-                            </div>
-                            <div class="d-flex mt-4">
-                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-secondary btn-square rounded-circle me-2" href="#"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-secondary btn-square rounded-circle" href="#"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+
+                        <div class="col-lg col-md-12 pt-0 pt-lg-5 mb-5">
                             <h4 class="text-white mb-4">Quick Links</h4>
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-white mb-2" href="#"><i
                                         class="bi bi-arrow-right text-white me-2"></i>Home</a>
-                                <a class="text-white mb-2" href="#"><i
+                                <a class="text-white mb-2" href="/"><i
                                         class="bi bi-arrow-right text-white me-2"></i>About Us</a>
                                 <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
+                                        class="bi bi-arrow-right text-white me-2"></i>Komunitas</a>
+                                <a class="text-white mb-2" href="{{ route('komunitas.all') }}"><i
+                                        class="bi bi-arrow-right text-white me-2"></i>Rekomendasi Pelayanan</a>
                                 <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
-                                <a class="text-white" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <h4 class="text-white mb-4">Popular Links</h4>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Home</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>About Us</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Our Services</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Meet The Team</a>
-                                <a class="text-white mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Latest Blog</a>
-                                <a class="text-white" href="#"><i
-                                        class="bi bi-arrow-right text-white me-2"></i>Contact Us</a>
+                                        class="bi bi-arrow-right text-white me-2"></i>Panduan</a>
                             </div>
                         </div>
                     </div>
@@ -694,7 +664,7 @@
     </div>
     <div class="container-fluid bg-dark text-white py-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">Your Site Name</a>. All Rights
+            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">FarmFresh</a>. All Rights
                 Reserved. Designed by <a class="text-secondary fw-bold" href="https://htmlcodex.com">HTML Codex</a>
             </p>
         </div>
