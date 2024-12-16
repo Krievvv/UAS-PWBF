@@ -95,15 +95,7 @@
             </div>
             <div class="col">
                 <div class="d-flex align-items-center justify-content-end">
-                    @if (Auth::check() && Auth::user()->role_id == 1)
-                        <a class="btn btn-primary me-2" href="{{ route('admin.dashboard') }}">Dashboard Admin</a>
-                    @endif
-                    @if (!Auth::check())
-                        <a class="btn btn-primary me-2" href="/login">Login</a>
-                    @else
-                        <a class="btn btn-primary me-2"
-                            href="{{ route('profile.index', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
-                    @endif
+                    <a class="btn btn-primary me-2" href="/login">Login</a>
                 </div>
             </div>
         </div>
@@ -122,13 +114,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
                 <a href="/" class="nav-item nav-link">Home</a>
-                <a href="{{ route('komunitas.all') }}"
-                    class="nav-item nav-link {{ request()->is('komunitas/*') ? 'active' : '' }}">Komunitas</a>
-                <a href="{{ route('rekomendasi.user') }}"
-                    class="nav-item nav-link {{ request()->is('rekomendasi/*') ? 'active' : '' }}">Rekomendasi
-                    Pelayanan</a>
-                <a href="{{ route('panduan.user') }}"
-                    class="nav-item nav-link {{ request()->is('panduan/*') ? 'active' : '' }}">Panduan</a>
+                <a href="{{ route('komunitas.all') }}" class="nav-item nav-link {{ (request()->is('komunitas/*')) ? 'active' : '' }}">Komunitas</a>
+                <a href="{{ route('rekomendasi.user') }}" class="nav-item nav-link {{ (request()->is('rekomendasi/*')) ? 'active' : '' }}">Rekomendasi Pelayanan</a>
+                <a href="{{ route('panduan.user') }}" class="nav-item nav-link {{ (request()->is('panduan/*')) ? 'active' : '' }}">Panduan</a>
             </div>
         </div>
     </nav>
@@ -138,7 +126,7 @@
     <!-- Blog Start -->
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-12 col-sm-12">
+            <div class="col-lg-8">
                 <!-- Blog Detail Start -->
                 <div class="mb-5">
                     <div class="row g-5 mb-5">
@@ -158,7 +146,6 @@
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" required>
                                 <input type="submit" class="btn btn-success" value="Joined">
                             </form>
-                            <a class="btn btn-primary me-2 mt-3" href="{{ route('chat', $show->id) }}">Message</a>
                         @else
                             <form action="{{ route('komunitas.join', $show->id) }}" method="post">
                                 @csrf
@@ -176,41 +163,8 @@
 
                 <!-- not logged in -->
                 <div class="{{ !Auth::check() ? 'not-logged-in' : '' }}">
-
-                    <!-- Comment Form Start -->
-                    <div class="bg-primary p-5">
-
-                        @if (session('success'))
-                            <div class="alert alert-primary" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
-                        <h2 class="text-white mb-4">Leave a comment</h2>
-
-                        @if (!Auth::check())
-                            <div class="row g-3">
-                                <h3 class="text-white text-center">---- Login to comment ----</h3>
-                            </div>
-                        @else
-                            <form action="{{ route('komentar.store', $show->id) }}" method="post">
-                                @csrf
-                                <div class="row g-3">
-                                    <div class="col-12">
-                                        <textarea class="form-control bg-white border-0" rows="5" name="komentar" placeholder="Comment"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-secondary w-100 py-3" type="submit">Leave Your
-                                            Comment </button>
-                                    </div>
-                                </div>
-                            </form>
-                        @endif
-                    </div>
-                    <!-- Comment Form End -->
-
                     <!-- Comment List Start -->
-                    <div class="mt-5">
+                    <div class="mb-5">
                         <h2 class="mb-4">{{ $countComment }} Comments</h2>
                         @forelse ($show->comments as $comment)
                             <div class="d-flex mb-4">
@@ -221,7 +175,7 @@
                                         <small><i>{{ $comment->created_at }}</i></small>
                                     </h6>
                                     <p>{{ $comment->isi_komentar }}</p>
-                                    {{-- <button class="btn btn-sm btn-primary">Reply</button> --}}
+                                    <button class="btn btn-sm btn-primary">Reply</button>
                                 </div>
                             </div>
                         @empty
@@ -230,13 +184,152 @@
                     </div>
                     <!-- Comment List End -->
 
+                    <!-- Comment Form Start -->
+                    <div class="bg-primary p-5">
+                        <h2 class="text-white mb-4">Leave a comment</h2>
+                        <form>
+                            @if (!Auth::check())
+                                <div class="row g-3">
+                                    <h3 class="text-white text-center">---- Login to comment ----</h3>
+                                </div>
+                            @else
+                                <form action="" method="post">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <textarea class="form-control bg-white border-0" rows="5" placeholder="Comment"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-secondary w-100 py-3" type="submit">Leave Your
+                                                Comment</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            @endif
+                        </form>
+                    </div>
+                    <!-- Comment Form End -->
                 </div>
 
                 <!-- not logged in -->
 
             </div>
 
+            <!-- Sidebar Start -->
+            <div class="col-lg-4">
+                <!-- Search Form Start -->
+                <div class="mb-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control p-3" placeholder="Keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                <!-- Search Form End -->
 
+                <!-- Category Start -->
+                <div class="mb-5">
+                    <h2 class="mb-4">Categories</h2>
+                    <div class="d-flex flex-column justify-content-start bg-primary p-4">
+                        <a class="fs-5 fw-bold text-white mb-2" href="#"><i
+                                class="bi bi-arrow-right me-2"></i>Web Design</a>
+                        <a class="fs-5 fw-bold text-white mb-2" href="#"><i
+                                class="bi bi-arrow-right me-2"></i>Web Development</a>
+                        <a class="fs-5 fw-bold text-white mb-2" href="#"><i
+                                class="bi bi-arrow-right me-2"></i>Web Development</a>
+                        <a class="fs-5 fw-bold text-white mb-2" href="#"><i
+                                class="bi bi-arrow-right me-2"></i>Keyword Research</a>
+                        <a class="fs-5 fw-bold text-white" href="#"><i class="bi bi-arrow-right me-2"></i>Email
+                            Marketing</a>
+                    </div>
+                </div>
+                <!-- Category End -->
+
+                <!-- Recent Post Start -->
+                <div class="mb-5">
+                    <h2 class="mb-4">Recent Post</h2>
+                    <div class="bg-primary p-4">
+                        <div class="d-flex overflow-hidden mb-3">
+                            <img class="img-fluid flex-shrink-0" src="img/blog-1.jpg" style="width: 75px;"
+                                alt="">
+                            <a href=""
+                                class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0">Lorem ipsum
+                                dolor sit amet elit
+                            </a>
+                        </div>
+                        <div class="d-flex overflow-hidden mb-3">
+                            <img class="img-fluid flex-shrink-0" src="img/blog-2.jpg" style="width: 75px;"
+                                alt="">
+                            <a href=""
+                                class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0">Lorem ipsum
+                                dolor sit amet elit
+                            </a>
+                        </div>
+                        <div class="d-flex overflow-hidden mb-3">
+                            <img class="img-fluid flex-shrink-0" src="img/blog-3.jpg" style="width: 75px;"
+                                alt="">
+                            <a href=""
+                                class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0">Lorem ipsum
+                                dolor sit amet elit
+                            </a>
+                        </div>
+                        <div class="d-flex overflow-hidden mb-3">
+                            <img class="img-fluid flex-shrink-0" src="img/blog-1.jpg" style="width: 75px;"
+                                alt="">
+                            <a href=""
+                                class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0">Lorem ipsum
+                                dolor sit amet elit
+                            </a>
+                        </div>
+                        <div class="d-flex overflow-hidden">
+                            <img class="img-fluid flex-shrink-0" src="img/blog-2.jpg" style="width: 75px;"
+                                alt="">
+                            <a href=""
+                                class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0">Lorem ipsum
+                                dolor sit amet elit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recent Post End -->
+
+                <!-- Image Start -->
+                <div class="mb-5">
+                    <img src="img/blog-1.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <!-- Image End -->
+
+                <!-- Tags Start -->
+                <div class="mb-5">
+                    <h2 class="mb-4">Tag Cloud</h2>
+                    <div class="d-flex flex-wrap m-n1">
+                        <a href="" class="btn btn-primary m-1">Design</a>
+                        <a href="" class="btn btn-primary m-1">Development</a>
+                        <a href="" class="btn btn-primary m-1">Marketing</a>
+                        <a href="" class="btn btn-primary m-1">SEO</a>
+                        <a href="" class="btn btn-primary m-1">Writing</a>
+                        <a href="" class="btn btn-primary m-1">Consulting</a>
+                        <a href="" class="btn btn-primary m-1">Design</a>
+                        <a href="" class="btn btn-primary m-1">Development</a>
+                        <a href="" class="btn btn-primary m-1">Marketing</a>
+                        <a href="" class="btn btn-primary m-1">SEO</a>
+                        <a href="" class="btn btn-primary m-1">Writing</a>
+                        <a href="" class="btn btn-primary m-1">Consulting</a>
+                    </div>
+                </div>
+                <!-- Tags End -->
+
+                <!-- Plain Text Start -->
+                <div>
+                    <h2 class="mb-4">Plain Text</h2>
+                    <div class="bg-primary text-center text-white" style="padding: 30px;">
+                        <p>Vero sea et accusam justo dolor accusam lorem consetetur, dolores sit amet sit dolor clita
+                            kasd justo, diam accusam no sea ut tempor magna takimata, amet sit et diam dolor ipsum amet
+                            diam</p>
+                        <a href="" class="btn btn-secondary py-2 px-4">Read More</a>
+                    </div>
+                </div>
+                <!-- Plain Text End -->
+            </div>
+            <!-- Sidebar End -->
         </div>
     </div>
     <!-- Blog End -->
@@ -248,7 +341,7 @@
             <div class="row gx-5">
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
-
+                       
                         <div class="col-lg col-md-12 pt-0 pt-lg-5 mb-5">
                             <h4 class="text-white mb-4">Quick Links</h4>
                             <div class="d-flex flex-column justify-content-start">
@@ -292,29 +385,10 @@
     </div>
     <!-- Footer End -->
 
-    <!-- Back to Top -->
-    @if ($show->members->contains($user))
-        <div id="chat-button">
-            Live Discussion
-        </div>
-    @endif
 
-    <!-- Chat Popup -->
-    <div id="chat-popup">
-        <div id="chat-header">
-            <span>Live Discussion : {{ $show->nama_komunitas }}</span>
-            <button id="close-chat">&times;</button>
-        </div>
-        <div id="chat-box">
-            <!-- Messages will be appended here -->
-        </div>
-        <form id="chat-form">
-            <input type="hidden" id="komunitas-id" value="{{ $show->id }}">
-            <input type="hidden" value="{{ Auth::user()->name }}" id="username" required>
-            <input type="text" id="message" placeholder="Type your message..." required>
-            <button type="submit">Send</button>
-        </form>
-    </div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-secondary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -326,58 +400,6 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
-    @if ($show->members->contains($user))
-        <script>
-            const komunitasId = $('#komunitas-id').val();
-            const currentUser = $('#username').val();
-
-            // Toggle chat popup visibility
-            $('#chat-button').on('click', function() {
-                $('#chat-popup').fadeIn();
-            });
-
-            $('#close-chat').on('click', function() {
-                $('#chat-popup').fadeOut();
-            });
-
-            // Fetch messages
-            function fetchMessages() {
-                $.get(`/chat/${komunitasId}`, function(messages) {
-                    $('#chat-box').html('');
-                    messages.forEach(function(message) {
-                        const messageClass = message.username === currentUser ? 'own-message' : 'other-message';
-                        $('#chat-box').append(
-                            `<p class="${messageClass}"><strong>${message.username}:</strong><br> ${message.message}</p>`
-                        );
-                    });
-                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                });
-            }
-
-            // Send a message
-            $('#chat-form').on('submit', function(e) {
-                e.preventDefault();
-
-                const data = {
-                    komunitas_id: komunitasId,
-                    username: $('#username').val(),
-                    message: $('#message').val(),
-                    _token: '{{ csrf_token() }}'
-                };
-
-                $.post('/chat/send', data, function(response) {
-                    $('#message').val(''); // Clear the input
-                    fetchMessages(); // Refresh messages
-                });
-            });
-
-            // Fetch messages every 2 seconds
-            setInterval(fetchMessages, 2000);
-
-            // Initial load
-            fetchMessages();
-        </script>
-    @endif
 </body>
 
 </html>

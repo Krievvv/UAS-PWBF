@@ -14,4 +14,9 @@ class KomunitasModel extends Model
     {
         return $this->hasMany(KomentarModel::class, 'komunitas_id');
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'member_komunitas', 'komunitas_id', 'user_id');
+    }
 }

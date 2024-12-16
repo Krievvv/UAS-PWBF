@@ -51,7 +51,7 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-bold">New to FarmFest ?</p>
                                         <a class="text-primary fw-bold ms-2"
-                                            href="./authentication-register.html">Create an account</a>
+                                            href="{{ route('register.view') }}">Create an account</a>
                                     </div>
                                 </form>
                             </div>

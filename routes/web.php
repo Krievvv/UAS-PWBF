@@ -26,13 +26,13 @@ Route::get('register/create', [AuthController::class, 'create'])->name('register
 Route::prefix('admin')->middleware(AuthMiddleware::class)->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/komunitas', [KomunitasController::class, 'indexAdmin'])->name('admin.komunitas');
-    
+
     // Komentar
     Route::get('/comment/all', [KomentarController::class, 'index'])->name('komentar.index');
     Route::get('/comment/takedown/{id}', [KomentarController::class, 'takedown'])->name('komentar.takedown');
     Route::get('/comment/publish/{id}', [KomentarController::class, 'publish'])->name('komentar.publish');
     Route::get('/comment/delete/{id}', [KomentarController::class, 'delete'])->name('komentar.delete');
-    
+
     // admin
     Route::get('/komunitas/create', [KomunitasController::class, 'create'])->name('komunitas.create');
     Route::post('/komunitas/store', [KomunitasController::class, 'store'])->name('komunitas.store');
@@ -40,16 +40,16 @@ Route::prefix('admin')->middleware(AuthMiddleware::class)->group(function () {
     Route::get('/komunitas/takedown/{id}', [KomunitasController::class, 'takedown'])->name('komunitas.takedown');
     Route::get('/komunitas/publish/{id}', [KomunitasController::class, 'publish'])->name('komunitas.publish');
     Route::get('/komunitas/delete/{id}', [KomunitasController::class, 'delete'])->name('komunitas.delete');
-    
-    
+
+
     // Panduan
-    // Route::get('/panduan/all', [PanduanController::class, 'index'])->name('panduan.index');
-    // Route::post('/panduan/store', [PanduanController::class, 'store'])->name('panduan.store');
-    // Route::get('/panduan/detail/{id}', [PanduanController::class, 'detail'])->name('panduan.detail');
-    // Route::get('/panduan/show/{id}', [PanduanController::class, 'show'])->name('panduan.show');
-    // Route::get('/panduan/update/{id}', [PanduanController::class, 'update'])->name('panduan.update');
-    // Route::get('/panduan/delete/{id}', [PanduanController::class, 'delete'])->name('panduan.delete');
-    
+    Route::get('/panduan/all', [PanduanController::class, 'index'])->name('panduan.index');
+    Route::post('/panduan/store', [PanduanController::class, 'store'])->name('panduan.store');
+    Route::get('/panduan/detail/{id}', [PanduanController::class, 'detail'])->name('panduan.detail');
+    Route::get('/panduan/show/{id}', [PanduanController::class, 'show'])->name('panduan.show');
+    Route::get('/panduan/update/{id}', [PanduanController::class, 'update'])->name('panduan.update');
+    Route::get('/panduan/delete/{id}', [PanduanController::class, 'delete'])->name('panduan.delete');
+
     // Admin Rekomendasi
     Route::get('/rekomendasi/all', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::post('/rekomendasi/store', [RekomendasiController::class, 'store'])->name('rekomendasi.store');

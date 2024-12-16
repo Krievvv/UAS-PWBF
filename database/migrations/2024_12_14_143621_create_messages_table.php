@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('komunitas', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('member_id')->nullable();
-            $table->foreign('member_id')->references('id')->on('member_komunitas');
-            $table->string('nama_komunitas');
-            $table->text('deskripsi_komunitas');
-            $table->integer('status');
+            $table->unsignedBigInteger('komunitas_id');
+            $table->text('message');
+            $table->string('username'); // To identify the sender
             $table->timestamps();
+        
+            $table->foreign('komunitas_id')->references('id')->on('komunitas')->onDelete('cascade');
         });
+        
     }
 
     /**
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('komunitas');
+        Schema::dropIfExists('messages');
     }
 };

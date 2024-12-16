@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member_komunitas', function (Blueprint $table) {
+        Schema::create('komunitas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('komunitas_id')->references('id')->on('komunitas');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('nama_komunitas');
+            $table->text('deskripsi_komunitas');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member_komunitas');
+        Schema::dropIfExists('komunitas');
     }
 };
