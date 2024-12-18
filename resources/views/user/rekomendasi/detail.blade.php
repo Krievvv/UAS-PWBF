@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>FarmFresh - Organic Farm Website Template</title>
+    <title>GrowFarm- Website Edukasi Pertanian</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -37,7 +37,7 @@
             <div class="col">
                 <div class="d-flex align-items-center justify-content-start">
                     <a href="/" class="navbar-brand ms-lg-5">
-                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Farm</span>Fresh</h1>
+                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Grow</span>Farm</h1>
                     </a>
                 </div>
             </div>
@@ -62,7 +62,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-5">
         <a href="index.html" class="navbar-brand d-flex d-lg-none">
-            <h1 class="m-0 display-4 text-secondary"><span class="text-white">Farm</span>Fresh</h1>
+            <h1 class="m-0 display-4 text-secondary"><span class="text-white">Grow</span>Farm</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -156,7 +156,7 @@
     </div>
     <div class="container-fluid bg-dark text-white py-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">FarmFresh</a>. All Rights
+            <p class="mb-0">&copy; <a class="text-secondary fw-bold" href="#">GrowFarm</a>. All Rights
                 Reserved. Designed by <a class="text-secondary fw-bold" href="https://htmlcodex.com">HTML Codex</a>
             </p>
         </div>

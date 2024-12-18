@@ -36,18 +36,18 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('komentar.index') }}" aria-expanded="false">
                         <i class="fa-solid fa-comments"></i>
                         <span class="hide-menu">Komentar</span>
                     </a>
                 </li>
-
+               
                 <li class="nav-small-cap">
                     <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
                     <span class="hide-menu">Pelayanan</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('panduan.index') }}" aria-expanded="false">
                         <iconify-icon icon="solar:login-3-line-duotone"></iconify-icon>
                         <span class="hide-menu">Panduan</span>
                     </a>
@@ -58,9 +58,9 @@
                         <span class="hide-menu">Rekomendasi</span>
                     </a>
                 </li>
-
+                
             </ul>
-
+           
         </nav>
         <!-- End Sidebar navigation -->
     </div>
