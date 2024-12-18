@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('nama_panduan');
-            $table->string('isi_panduan');
+            $table->text('isi_panduan');
             $table->timestamps();
         });
     }
