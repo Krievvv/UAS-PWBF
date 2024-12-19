@@ -8,4 +8,13 @@ class memberKomunitasModel extends Model
 {
     protected $table = 'member_komunitas';
     protected $guarded = [];
+
+    public function komunitas()
+    {
+        return $this->belongsTo(KomunitasModel::class, 'komunitas_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

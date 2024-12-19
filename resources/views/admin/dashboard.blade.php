@@ -146,7 +146,6 @@
                                         class="text-success d-block fw-normal ">{{ Str::limit($item->komunitas->nama_komunitas, 35) }}</a>
                                 </div>
                             </li>
-
                         @empty
                             <h3>No data yet</h3>
                         @endforelse

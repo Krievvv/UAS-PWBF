@@ -41,6 +41,7 @@ Route::prefix('admin')->middleware(AuthMiddleware::class)->group(function () {
     Route::get('/komunitas/takedown/{id}', [KomunitasController::class, 'takedown'])->name('komunitas.takedown');
     Route::get('/komunitas/publish/{id}', [KomunitasController::class, 'publish'])->name('komunitas.publish');
     Route::get('/komunitas/delete/{id}', [KomunitasController::class, 'delete'])->name('komunitas.delete');
+    Route::get('/komunitas/delete_member/{id}', [KomunitasController::class, 'delete_member'])->name('komunitas.delete.menber');
 
 
     // Panduan

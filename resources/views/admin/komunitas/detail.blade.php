@@ -66,7 +66,7 @@
                                                     {{ $komunitas->created_at->format('d M Y') }}</p>
                                             </div>
                                             <div class="action">
-                                                <a href="" class="btn btn-sm btn-outline-danger">Remove</a>
+                                                <a href="{{ route('komunitas.delete.menber', $item->id) }}" class="btn btn-sm btn-outline-danger">Remove</a>
                                             </div>
                                         </div>
                                     </div>

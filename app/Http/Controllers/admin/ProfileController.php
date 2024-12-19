@@ -16,4 +16,15 @@ class ProfileController extends Controller
         $memberKomunitas = memberKomunitasModel::where('user_id', Auth::user()->id)->get();
         return view('user.profile', compact('user', 'memberKomunitas'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $data = User::findOrFail($id);
+
+        $data->email = $request->email;
+        $data->name = $request->name;
+        $data->save();
+
+        return redirect()->back()->with('success', 'Data Berhasil di update');
+    }
 }

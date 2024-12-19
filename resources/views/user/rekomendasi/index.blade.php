@@ -43,11 +43,15 @@
             </div>
             <div class="col">
                 <div class="d-flex align-items-center justify-content-end">
+                    @if (Auth::check() && Auth::user()->role_id == 1)
+                    <a class="btn btn-primary me-2" href="{{ route('admin.dashboard') }}">Dashboard Admin</a>
+                @endif
                     @if (!Auth::check())
                         <a class="btn btn-primary me-2" href="/login">Login</a>
                     @else
                         <a class="btn btn-primary me-2"
                             href="{{ route('profile.index', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
+                            <a class="btn btn-primary me-2" href="{{ route('logout') }}">logout</a>
                     @endif
                 </div>
             </div>

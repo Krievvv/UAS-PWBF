@@ -28,11 +28,7 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Email or Password does not match our records');
         }
 
-        if (Auth::user()->role_id == 1) {
-            return redirect('admin/dashboard');
-        } else {
             return redirect('/');
-        }
     }
 
     public function create(Request $request)
@@ -47,4 +43,9 @@ class AuthController extends Controller
         User::create($data);
         return redirect('login')->with('success', 'Account created successfully');
     }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/');
+      }
 }

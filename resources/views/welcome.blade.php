@@ -61,6 +61,7 @@
                     @else
                         <a class="btn btn-primary me-2"
                             href="{{ route('profile.index', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
+                            <a class="btn btn-primary me-2" href="{{ route('logout') }}">logout</a>
                     @endif
                 </div>
             </div>

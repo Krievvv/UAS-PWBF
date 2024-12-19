@@ -75,9 +75,17 @@ class KomunitasController extends Controller
     {
         $komunitas = KomunitasModel::find($id);
         $usersJoined = memberKomunitasModel::where('komunitas_id', '=', $id)
-                        ->with('komunitas', 'user')
-                        ->get();
+            ->with('komunitas', 'user')
+            ->get();
         return view('admin.komunitas.detail', compact('komunitas', 'usersJoined'));
+    }
+
+    public function delete_member($id)
+    {
+        $data = memberKomunitasModel::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Member Successfully Removed');
     }
 
     public function join(Request $request, $id)
