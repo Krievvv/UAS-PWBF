@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('nama_rekomendasi');
-            $table->string('deskripsi_rekomendasi');
+            $table->longText('deskripsi_rekomendasi');
             $table->string('url_rekomendasi');
             $table->timestamps();
         });

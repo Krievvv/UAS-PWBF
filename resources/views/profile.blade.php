@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -129,7 +129,7 @@
                                         {{-- <p class="card-text">This is a wider card with supporting text below as a
                                             natural
                                             lead-in to additional content. This content is a little bit longer.</p> --}}
-                                        <p class="card-text"><small class="text-body-secondary">{{ $item->created_at }}</small>
+                                        {{-- <p class="card-text"><small class="text-body-secondary">{{ $item->created_at }}</small>
                                         </p>
                                         <a href="{{ route('komunitas.detail', $item->komunitas->id) }}" class="btn btn-sm btn-primary">See</a>
                                         <a href="" class="btn btn-sm btn-outline-warning">Leave</a>
@@ -163,4 +163,4 @@
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
-</html>
+</html> --}}
